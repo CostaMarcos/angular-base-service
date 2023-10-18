@@ -1,0 +1,9 @@
+{
+    "users": [{
+        "id": 1,
+        "name": "marcos",
+        "login": "costamarcos",
+        "role": "admin",
+        "active": true
+    }]
+}
