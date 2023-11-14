@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './components/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './modules/material/material.module';
+import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [

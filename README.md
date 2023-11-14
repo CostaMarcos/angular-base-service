@@ -1,27 +1,66 @@
 # AngularBase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
+Esse projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.6.
 
-## Development server
+Com objetivo de reduzir o tempo de criação e configuração de projetos angular, criei essa base que por padrão já integra algumas bibliotecas que são utilizadas na maioria dos projetos.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+`Importe os módulos do Material dentro de shared > material >  material.module invés de app.module`
 
-## Code scaffolding
+## Angular base service
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Implementei o angular base service nesse projeto, você poderá conferir dentro da pasta `services` > `base.service`. Este padrão cria os principais métodos para integração com uma `API REST` que podem ser herdados por serviços específicos.
+
+Deixei como exemplo o `user.service`
+
+    export class UserService extends BaseService<User> {
+
+        constructor(override http: HttpClient) { 
+            super(http, "users/");
+        }
+    }
+
+Essas simples linhas de código implementam por debaixo dos panos os métodos: 
+- Get
+- Post
+- Delete
+- Update
+
+Você pode criar seus proprios métodos específicos dentro do seu serviço ou então criar métodos que serão utilizados por todos os outros serviços no próprio Base Service
+
+
+## Material Module
+
+O projeto já utiliza o Material porém para utilização de alguns componentes você deve importar manualmente.
+
+Uma forma de organizar melhor o projeto é reunir todas as importações do Material em um único lugar, por isso criei um módulo específico para isso no `shared` > `material` > `material.module`
+
+## Json server
+
+Para aplicações que ainda não possuem um backend pronto, é possível utilizar o `json server` para simular requisições, esse banco implementa todos os métodos HTTP e utiliza como base o arquivo `db.json` dentro do projeto, onde você deve criar suas entidades.
+
+para instalar essa biblioteca você deve utilizar:
+
+    npm install -g json-server
+
+Para executar o banco utilize dentro do projeto:
+
+    npm run backend 
+
+
+Veja a documentação do [json server](https://www.npmjs.com/package/json-server)
+
+## Executar o projeto
+
+
+Instale as dependências com:
+
+    npm run install
+
+
+após isso utilize:
+
+    ng serve
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Execute `ng build` parar gerar o build do projeto. os arquivos de build serão inseridos dentro de `dist/`.
